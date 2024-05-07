@@ -1,4 +1,4 @@
-# kados-demo
+# kados-demo. 
 
 Utilities and data to put up demo instances for [Kolibre-KADOS](https://github.com/kolibre/Kolibre-KADOS) using [kobra](https://github.com/kolibre/kobra) as database backend.
 
