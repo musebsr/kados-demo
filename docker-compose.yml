@@ -33,7 +33,7 @@ services:
     depends_on:
       - postgres
   kados-v1:
-    image: kolibreorg/kados:v1-latest
+    image: muzarde/kados-test:v1-latest
     environment:
       - DODP_SUPPORTED_OPTIONAL_OPERATIONS_SERVICE_PDTB2_KEY_PROVISION=0 # Not supported in kados
       - KADOS_ADAPTER_ARGS=pgsql:host=postgres;port=5432;user=postgres;password=password;dbname=kobra,yourOwnSecretKey
