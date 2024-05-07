@@ -1,5 +1,6 @@
-# credits to UNITAS
+# coding=utf-8
 
+# -credits to UNITAS
 import os
 from pathlib import Path
 import ebookmeta #0.11.2
