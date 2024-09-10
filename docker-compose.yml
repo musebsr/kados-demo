@@ -3,7 +3,7 @@ services:
   postgres:
     image: postgres:11
     environment:
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=${MY_OWN_PASSWORD}
     volumes:
       - ${PWD}/fixture.postgres.sql:/fixture.sql
   nginx:
@@ -21,7 +21,7 @@ services:
   kobra:
     image: kolibreorg/kobra:latest
     environment:
-      - SECRET_KEY=yourOwnSecretKey
+      - SECRET_KEY=${MY_OWN_SECRET_KEY}
       - STORAGE_PATH=/srv/media
       - DATABASE_URL=postgres://postgres:password@postgres:5432/kobra
       - WAIT_FOR=tcp://postgres:5432
@@ -35,7 +35,7 @@ services:
     image: muzarde/kados-test:latest
     environment:
       - DODP_SUPPORTED_OPTIONAL_OPERATIONS_SERVICE_PDTB2_KEY_PROVISION=0 # Not supported in kados
-      - KADOS_ADAPTER_ARGS=pgsql:host=postgres;port=5432;user=postgres;password=password;dbname=kobra,yourOwnSecretKey
+      - KADOS_ADAPTER_ARGS=pgsql:host=postgres;port=5432;user=postgres;password=${MY_OWN_PASSWORD};dbname=kobra,${MY_OWN_SECRET_KEY}
       - KADOS_WEB_ROOT=/v1
     volumes:
       - ${PWD}/service.css:/var/www/public/service.css
@@ -51,7 +51,7 @@ services:
       - DODP_SUPPORTED_OPTIONAL_OPERATIONS_SERVICE_PDTB2_KEY_PROVISION=0 # Not supported in kados
       - DODP_SUPPORTED_OPTIONAL_OPERATIONS_SERVICE_TERMS_OF_SERVICE=0 # Not support in kobra
       - DODP_SUPPORTED_OPTIONAL_OPERATIONS_SERVICE_USER_CREDENTIALS=0 # Now supported in kados
-      - KADOS_ADAPTER_ARGS=pgsql:host=postgres;port=5432;user=postgres;password=password;dbname=kobra,yourOwnSecretKey
+      - KADOS_ADAPTER_ARGS=pgsql:host=postgres;port=5432;user=postgres;password=${MY_OWN_PASSWORD};dbname=kobra,${MY_OWN_SECRET_KEY}
       - KADOS_WEB_ROOT=/v2
     volumes:
       - ${PWD}/service.css:/var/www/public/service.css
