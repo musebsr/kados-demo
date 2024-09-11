@@ -10,10 +10,10 @@ INSERT INTO announcements (category, priority, created_at, updated_at) VALUES
 
 -- AnnouncementsTexts
 INSERT INTO announcement_texts (announcement_id, text, language_id, created_at, updated_at) VALUES
-    (1, 'Welcome to the Kolibre Daisy Online demo service.', 1, NOW(), NOW()),
-    (1, 'Välkommen till Kolibres Daisy Online demo tjänst.', 2, NOW(), NOW()),
-    (2, 'Feel free to use and explore this service. Remember to mark the announcements as read when you have read them.', 1, NOW(), NOW()),
-    (2, 'Du kan fritt använda och utforska denna tjänst. Kom ihåg att markera meddelandena som lästa efter att du läst dem.', 2, NOW(), NOW());
+    (1, 'Bienvenue dans le service de livres de la BSR.', 1, NOW(), NOW()),
+    (1, 'Bienvenue dans le service de livres de la BSR.', 2, NOW(), NOW()),
+    (2, 'N hésitez pas à utiliser et explorer ce service. N oubliez pas de marquer les annonces comme lues lorsque vous les avez lues.', 1, NOW(), NOW()),
+    (2, 'N hésitez pas à utiliser et explorer ce service. N oubliez pas de marquer les annonces comme lues lorsque vous les avez lues.', 2, NOW(), NOW());
 
 -- AnnouncementAudios
 INSERT INTO announcement_audios (announcement_text_id, size, length, mime_type, audio, created_at, updated_at) VALUES
@@ -49,35 +49,35 @@ INSERT INTO user_announcements (user_id, announcement_id, created_at, updated_at
 
 -- Questions
 INSERT INTO questions (id, parent_id, question_type_id, created_at, updated_at) VALUES
-    (1, 0, 1, NOW(), NOW()), -- MAIN MENU
-    (2, 1, 3, NOW(), NOW()), -- search option
-    (3, 1, 3, NOW(), NOW()), -- browse option
-    (4, 1, 3, NOW(), NOW()), -- feedback option
-    (20, 2, 1, NOW(), NOW()), -- SEARCH MENU
-    (21, 20, 3, NOW(), NOW()), -- search by author
-    (22, 20, 3, NOW(), NOW()), -- search by title
-    (23, 21, 2, NOW(), NOW()), -- input for search by author
-    (24, 22, 2, NOW(), NOW()), -- input for search by title
-    (25, 23, 4, NOW(), NOW()), -- endpoint for search by author
-    (26, 24, 4, NOW(), NOW()), -- endpoint for search by title
-    (30, 3, 1, NOW(), NOW()), -- BROWSE MENU
-    (31, 30, 3, NOW(), NOW()), -- browse by title
-    (32, 30, 3, NOW(), NOW()), -- browse by daisy2
-    (33, 30, 3, NOW(), NOW()), -- browse by daisy3
-    (34, 31, 4, NOW(), NOW()), -- endpoint for browse by title
-    (35, 32, 4, NOW(), NOW()), -- endpoint for browse by daisy2
-    (36, 33, 4, NOW(), NOW()), -- endpoint for browse by daisy3
-    (40, 4, 1, NOW(), NOW()), -- FEEDBACK MENU (rate)
-    (41, 4, 2, NOW(), NOW()), -- FEEDBACK MENU (custom feedback)
-    (42, 40, 3, NOW(), NOW()), -- rate option excellent
-    (43, 40, 3, NOW(), NOW()), -- rate option good
-    (44, 40, 3, NOW(), NOW()), -- rate option fair
-    (45, 40, 3, NOW(), NOW()), -- rate option poor
-    (46, 41, 5, NOW(), NOW()), -- endpoint for feedback
-    (47, 42, 5, NOW(), NOW()), -- endpoint for feedback
-    (48, 43, 5, NOW(), NOW()), -- endpoint for feedback
-    (49, 44, 5, NOW(), NOW()), -- endpoint for feedback
-    (50, 45, 5, NOW(), NOW()); -- endpoint for feedback
+    (1, 0, 1, NOW(), NOW()), -- MENU PRINCIPAL
+    (2, 1, 3, NOW(), NOW()), -- option de recherche
+    (3, 1, 3, NOW(), NOW()), -- option de navigation
+    (4, 1, 3, NOW(), NOW()), -- option de retour
+    (20, 2, 1, NOW(), NOW()), -- MENU RECHERCHE
+    (21, 20, 3, NOW(), NOW()), -- recherche par auteur
+    (22, 20, 3, NOW(), NOW()), -- recherche par titre
+    (23, 21, 2, NOW(), NOW()), -- entrée pour recherche par auteur
+    (24, 22, 2, NOW(), NOW()), -- entrée pour recherche par titre
+    (25, 23, 4, NOW(), NOW()), -- point de terminaison pour recherche par auteur
+    (26, 24, 4, NOW(), NOW()), -- point de terminaison pour recherche par titre
+    (30, 3, 1, NOW(), NOW()), -- MENU NAVIGATION
+    (31, 30, 3, NOW(), NOW()), -- navigation par titre
+    (32, 30, 3, NOW(), NOW()), -- navigation par format Daisy2
+    (33, 30, 3, NOW(), NOW()), -- navigation par format Daisy3
+    (34, 31, 4, NOW(), NOW()), -- point de terminaison pour navigation par titre
+    (35, 32, 4, NOW(), NOW()), -- point de terminaison pour navigation par Daisy2
+    (36, 33, 4, NOW(), NOW()), -- point de terminaison pour navigation par Daisy3
+    (40, 4, 1, NOW(), NOW()), -- MENU RETOUR (évaluer)
+    (41, 4, 2, NOW(), NOW()), -- MENU RETOUR (retour personnalisé)
+    (42, 40, 3, NOW(), NOW()), -- option d'évaluation excellent
+    (43, 40, 3, NOW(), NOW()), -- option d'évaluation bon
+    (44, 40, 3, NOW(), NOW()), -- option d'évaluation passable
+    (45, 40, 3, NOW(), NOW()), -- option d'évaluation mauvais
+    (46, 41, 5, NOW(), NOW()), -- point de terminaison pour retour
+    (47, 42, 5, NOW(), NOW()), -- point de terminaison pour retour
+    (48, 43, 5, NOW(), NOW()), -- point de terminaison pour retour
+    (49, 44, 5, NOW(), NOW()), -- point de terminaison pour retour
+    (50, 45, 5, NOW(), NOW()); -- point de terminaison pour retour
 ALTER SEQUENCE questions_id_seq RESTART WITH 51;
 
 -- QuestionInputs
@@ -93,46 +93,46 @@ INSERT INTO question_inputs (question_id, text_alphanumeric, created_at, updated
 
 -- QuestionTexts
 INSERT INTO question_texts (language_id, text, created_at, updated_at) VALUES 
-    (1, 'What would you like to do?', NOW(), NOW()),
-    (2, 'Vad vill du göra?', NOW(), NOW()),
-    (1, 'Search the library.', NOW(), NOW()),
-    (2, 'Söka i biblioteket.', NOW(), NOW()),
-    (1, 'Browse the library.', NOW(), NOW()),
-    (2, 'Utforska biblioteket.', NOW(), NOW()),
-    (1, 'Give feedback.', NOW(), NOW()),
-    (2, 'Ge feedback.', NOW(), NOW()),
-    (1, 'What do you want to search by?', NOW(), NOW()),
-    (2, 'Vad vill du söka enligt?', NOW(), NOW()),
-    (1, 'Search by author.', NOW(), NOW()),
-    (2, 'Sök bland författare.', NOW(), NOW()),
-    (1, 'Search by title.', NOW(), NOW()),
-    (2, 'Sök bland titel.', NOW(), NOW()),
-    (1, 'Author keywords:', NOW(), NOW()),
-    (2, 'Sökord författare:', NOW(), NOW()),
-    (1, 'Title keywords:', NOW(), NOW()),
-    (2, 'Sökord titel:', NOW(), NOW()),
-    (1, 'How do you want to browse the library?', NOW(), NOW()),
-    (2, 'Hur vill du utforska biblioteket?', NOW(), NOW()),
-    (1, 'Browse by title.', NOW(), NOW()),
-    (2, 'Utforska bland titlar.', NOW(), NOW()),
-    (1, 'Browse by Daisy 2 content format.', NOW(), NOW()),
-    (2, 'Utforska bland Daisy 2 filformat.', NOW(), NOW()),
-    (1, 'Browse by Daisy 3 content format.', NOW(), NOW()),
-    (2, 'Utforska bland Daisy 3 filformat.', NOW(), NOW()),
-    (1, 'How would you rate this service?', NOW(), NOW()),
-    (2, 'Hur skulle du betygsätta denna tjänst?', NOW(), NOW()),
-    (1, 'Optional feedback?', NOW(), NOW()),
-    (2, 'Frivillig feedback?', NOW(), NOW()),
+    (1, 'Que souhaitez-vous faire?', NOW(), NOW()),
+    (2, 'Que souhaitez-vous faire?', NOW(), NOW()),
+    (1, 'Rechercher dans la bibliothèque.', NOW(), NOW()),
+    (2, 'Rechercher dans la bibliothèque.', NOW(), NOW()),
+    (1, 'Parcourir la bibliothèque.', NOW(), NOW()),
+    (2, 'Parcourir la bibliothèque.', NOW(), NOW()),
+    (1, 'Donner votre avis.', NOW(), NOW()),
+    (2, 'Donner votre avis.', NOW(), NOW()),
+    (1, 'Que voulez-vous rechercher?', NOW(), NOW()),
+    (2, 'Que voulez-vous rechercher?', NOW(), NOW()),
+    (1, 'Rechercher par auteur.', NOW(), NOW()),
+    (2, 'Rechercher par auteur.', NOW(), NOW()),
+    (1, 'Rechercher par titre.', NOW(), NOW()),
+    (2, 'Rechercher par titre.', NOW(), NOW()),
+    (1, 'Mots-clés auteur :', NOW(), NOW()),
+    (2, 'Mots-clés auteur :', NOW(), NOW()),
+    (1, 'Mots-clés titre :', NOW(), NOW()),
+    (2, 'Mots-clés titre :', NOW(), NOW()),
+    (1, 'Comment souhaitez-vous parcourir la bibliothèque?', NOW(), NOW()),
+    (2, 'Comment souhaitez-vous parcourir la bibliothèque?', NOW(), NOW()),
+    (1, 'Parcourir par titre.', NOW(), NOW()),
+    (2, 'Parcourir par titre.', NOW(), NOW()),
+    (1, 'Parcourir par format Daisy 2.', NOW(), NOW()),
+    (2, 'Parcourir par format Daisy 2.', NOW(), NOW()),
+    (1, 'Parcourir par format Daisy 3.', NOW(), NOW()),
+    (2, 'Parcourir par format Daisy 3.', NOW(), NOW()),
+    (1, 'Comment évalueriez-vous ce service?', NOW(), NOW()),
+    (2, 'Comment évalueriez-vous ce service?', NOW(), NOW()),
+    (1, 'Retour facultatif ?', NOW(), NOW()),
+    (2, 'Retour facultatif ?', NOW(), NOW()),
     (1, 'Excellent.', NOW(), NOW()),
-    (2, 'Utmärkt.', NOW(), NOW()),
-    (1, 'Good.', NOW(), NOW()),
-    (2, 'Bra.', NOW(), NOW()),
-    (1, 'Fair.', NOW(), NOW()),
-    (2, 'Dålig.', NOW(), NOW()),
-    (1, 'Poor.', NOW(), NOW()),
-    (2, 'Usel.', NOW(), NOW()),
-    (1, 'Thank you for your feedback.', NOW(), NOW()),
-    (2, 'Tack för din feedback.', NOW(), NOW());
+    (2, 'Excellent.', NOW(), NOW()),
+    (1, 'Bon.', NOW(), NOW()),
+    (2, 'Bon.', NOW(), NOW()),
+    (1, 'Passable.', NOW(), NOW()),
+    (2, 'Passable.', NOW(), NOW()),
+    (1, 'Mauvais.', NOW(), NOW()),
+    (2, 'Mauvais.', NOW(), NOW()),
+    (1, 'Merci pour votre retour.', NOW(), NOW()),
+    (2, 'Merci pour votre retour.', NOW(), NOW());
 
 -- QuestionAudios
 INSERT INTO question_audios (question_text_id, size, length, mime_type, audio, created_at, updated_at) VALUES
