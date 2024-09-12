@@ -200,7 +200,7 @@ INSERT INTO question_question_texts (question_id, question_text_id, created_at, 
     (30, 19, NOW(), NOW()), --Comment voulez-vous parcourir la bibliothèque ?
     (30, 20, NOW(), NOW()), --Comment voulez-vous parcourir la bibliothèque ?
     (31, 21, NOW(), NOW()), --parcourir par titre
-    (31, 22, NOW(), NOW()), --parcourir par titre
+    (31, 22, NOW(), NOW()); --parcourir par titre
     -- (32, 41, NOW(), NOW()), --parcourir par âge
     -- (32, 42, NOW(), NOW()), --parcourir par âge
     -- (40, 41, NOW(), NOW()), --Âge
