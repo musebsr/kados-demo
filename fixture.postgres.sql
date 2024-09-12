@@ -62,11 +62,11 @@ INSERT INTO questions (id, parent_id, question_type_id, created_at, updated_at) 
     (26, 24, 4, NOW(), NOW()), -- point de terminaison pour recherche par titre
     (30, 3, 1, NOW(), NOW()), -- MENU NAVIGATION
     (31, 30, 3, NOW(), NOW()), -- navigation par titre
-    -- (32, 30, 3, NOW(), NOW()), -- navigation par format Daisy2
-    -- (33, 30, 3, NOW(), NOW()), -- navigation par format Daisy3
+    (32, 30, 3, NOW(), NOW()), -- navigation par format Daisy2
+    (33, 30, 3, NOW(), NOW()), -- navigation par format Daisy3
     (34, 31, 4, NOW(), NOW()), -- point de terminaison pour navigation par titre
-    -- (35, 32, 4, NOW(), NOW()), -- point de terminaison pour navigation par Daisy2
-    -- (36, 33, 4, NOW(), NOW()), -- point de terminaison pour navigation par Daisy3
+    (35, 32, 4, NOW(), NOW()), -- point de terminaison pour navigation par Daisy2
+    (36, 33, 4, NOW(), NOW()), -- point de terminaison pour navigation par Daisy3
     (40, 4, 1, NOW(), NOW()), -- MENU RETOUR (évaluer)
     (41, 4, 2, NOW(), NOW()), -- MENU RETOUR (retour personnalisé)
     (42, 40, 3, NOW(), NOW()), -- option d'évaluation excellent
@@ -93,19 +93,19 @@ INSERT INTO question_inputs (question_id, text_alphanumeric, created_at, updated
 
 -- QuestionTexts
 INSERT INTO question_texts (language_id, text, created_at, updated_at) VALUES 
-    (1, 'Rechercher ou parcourir', NOW(), NOW()),
+    (1, 'Que souhaitez-vous faire?', NOW(), NOW()),
     (2, 'Que souhaitez-vous faire?', NOW(), NOW()),
-    (1, 'Recherche', NOW(), NOW()),
+    (1, 'Rechercher dans la bibliothèque.', NOW(), NOW()),
     (2, 'Rechercher dans la bibliothèque.', NOW(), NOW()),
     (1, 'Parcourir la bibliothèque.', NOW(), NOW()),
-    (2, 'Parcourir', NOW(), NOW()),
-    -- (1, 'Donner votre avis.', NOW(), NOW()),
-    --  (2, 'Donner votre avis.', NOW(), NOW()),
+    (2, 'Parcourir la bibliothèque.', NOW(), NOW()),
+    (1, 'Donner votre avis.', NOW(), NOW()),
+    (2, 'Donner votre avis.', NOW(), NOW()),
     (1, 'Que voulez-vous rechercher?', NOW(), NOW()),
     (2, 'Que voulez-vous rechercher?', NOW(), NOW()),
-    (1, 'Recherche par auteur', NOW(), NOW()),
+    (1, 'Rechercher par auteur.', NOW(), NOW()),
     (2, 'Rechercher par auteur.', NOW(), NOW()),
-    (1, 'Rechercher par titre', NOW(), NOW()),
+    (1, 'Rechercher par titre.', NOW(), NOW()),
     (2, 'Rechercher par titre.', NOW(), NOW()),
     (1, 'Mots-clés auteur :', NOW(), NOW()),
     (2, 'Mots-clés auteur :', NOW(), NOW()),
@@ -179,41 +179,53 @@ INSERT INTO question_audios (question_text_id, size, length, mime_type, audio, c
 
 -- QuestionQuestionTexts
 INSERT INTO question_question_texts (question_id, question_text_id, created_at, updated_at) VALUES
-    (1, 1, NOW(), NOW()), --Rechercher dans la bibliothèque Unitas
-    (1, 2, NOW(), NOW()), --Rechercher dans la bibliothèque Unitas
-    (2, 3, NOW(), NOW()), --rechercher par...
-    (2, 4, NOW(), NOW()), --rechercher par...
-    (3, 5, NOW(), NOW()), --Parcourir la bibliothèque
-    (3, 6, NOW(), NOW()), --Parcourir la bibliothèque
-    -- (4, 7, NOW(), NOW()), -- SUPPR?
-    -- (4, 8, NOW(), NOW()), -- SUPPR?
-    (20, 9, NOW(), NOW()), --Que voulez-vous rechercher ?
-    (20, 10, NOW(), NOW()), --Que voulez-vous rechercher ?
-    (21, 11, NOW(), NOW()), --rechercher par auteur
-    (21, 12, NOW(), NOW()), --rechercher par auteur
-    (22, 13, NOW(), NOW()), --rechercher par titre
-    (22, 14, NOW(), NOW()), --rechercher par titre
-    (23, 15, NOW(), NOW()), --auteur
-    (23, 16, NOW(), NOW()), --auteur
-    (24, 17, NOW(), NOW()), --titre
-    (24, 18, NOW(), NOW()), --titre
-    (30, 19, NOW(), NOW()), --Comment voulez-vous parcourir la bibliothèque ?
-    (30, 20, NOW(), NOW()), --Comment voulez-vous parcourir la bibliothèque ?
-    (31, 21, NOW(), NOW()), --parcourir par titre
-    (31, 22, NOW(), NOW()); --parcourir par titre
-    -- (32, 41, NOW(), NOW()), --parcourir par âge
-    -- (32, 42, NOW(), NOW()), --parcourir par âge
-    -- (40, 41, NOW(), NOW()), --Âge
-    -- (40, 42, NOW(), NOW()), --Âge
-    -- (41, 43, NOW(), NOW()), --6 8 ans
-    -- (41, 44, NOW(), NOW()), --6 8 ans
-    -- (42, 45, NOW(), NOW()), --9 11 ans
-    -- (42, 46, NOW(), NOW()), --9 11 ans
-    -- (43, 47, NOW(), NOW()), --12 14 ans
-    -- (43, 48, NOW(), NOW()), --12 14 ans
-    -- (44, 49, NOW(), NOW()), --15 18 ans
-    -- (44, 50, NOW(), NOW()), --15 18 ans
-    -- (45, 51, NOW(), NOW()), --
-
+    (1, 1, NOW(), NOW()),
+    (1, 2, NOW(), NOW()),
+    (2, 3, NOW(), NOW()),
+    (2, 4, NOW(), NOW()),
+    (3, 5, NOW(), NOW()),
+    (3, 6, NOW(), NOW()),
+    (4, 7, NOW(), NOW()),
+    (4, 8, NOW(), NOW()),
+    (20, 9, NOW(), NOW()),
+    (20, 10, NOW(), NOW()),
+    (21, 11, NOW(), NOW()),
+    (21, 12, NOW(), NOW()),
+    (22, 13, NOW(), NOW()),
+    (22, 14, NOW(), NOW()),
+    (23, 15, NOW(), NOW()),
+    (23, 16, NOW(), NOW()),
+    (24, 17, NOW(), NOW()),
+    (24, 18, NOW(), NOW()),
+    (30, 19, NOW(), NOW()),
+    (30, 20, NOW(), NOW()),
+    (31, 21, NOW(), NOW()),
+    (31, 22, NOW(), NOW()),
+    (32, 23, NOW(), NOW()),
+    (32, 24, NOW(), NOW()),
+    (33, 25, NOW(), NOW()),
+    (33, 26, NOW(), NOW()),
+    (40, 27, NOW(), NOW()),
+    (40, 28, NOW(), NOW()),
+    (41, 29, NOW(), NOW()),
+    (41, 30, NOW(), NOW()),
+    (42, 31, NOW(), NOW()),
+    (42, 32, NOW(), NOW()),
+    (43, 33, NOW(), NOW()),
+    (43, 34, NOW(), NOW()),
+    (44, 35, NOW(), NOW()),
+    (44, 26, NOW(), NOW()),
+    (45, 37, NOW(), NOW()),
+    (45, 38, NOW(), NOW()),
+    (46, 39, NOW(), NOW()),
+    (46, 40, NOW(), NOW()),
+    (47, 39, NOW(), NOW()),
+    (47, 40, NOW(), NOW()),
+    (48, 39, NOW(), NOW()),
+    (48, 40, NOW(), NOW()),
+    (49, 39, NOW(), NOW()),
+    (49, 40, NOW(), NOW()),
+    (50, 39, NOW(), NOW()),
+    (50, 40, NOW(), NOW());
 
 COMMIT;
