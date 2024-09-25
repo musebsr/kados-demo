@@ -1,8 +1,5 @@
 BEGIN;
 
--- A data fixture for annoucements and questions which can be added through REST API as
--- the API is not yet fully implemented. Only the data models exists. 
-
 -- Announcements
 INSERT INTO announcements (category, priority, created_at, updated_at) VALUES
     ('INFORMATION', 'MEDIUM', NOW(), NOW()),
@@ -25,115 +22,83 @@ INSERT INTO announcement_audios (announcement_text_id, size, length, mime_type, 
 -- UserAnnouncements
 INSERT INTO user_announcements (user_id, announcement_id, created_at, updated_at) VALUES
     (1, 1, NOW(), NOW()),
-    (1, 2, NOW(), NOW()),
-    (2, 1, NOW(), NOW()),
-    (2, 2, NOW(), NOW()),
-    (3, 1, NOW(), NOW()),
-    (3, 2, NOW(), NOW()),
-    (4, 1, NOW(), NOW()),
-    (4, 2, NOW(), NOW()),
-    (5, 1, NOW(), NOW()),
-    (5, 2, NOW(), NOW()),
-    (6, 1, NOW(), NOW()),
-    (6, 2, NOW(), NOW()),
-    (7, 1, NOW(), NOW()),
-    (7, 2, NOW(), NOW()),
-    (8, 1, NOW(), NOW()),
-    (8, 2, NOW(), NOW()),
-    (9, 1, NOW(), NOW()),
-    (9, 2, NOW(), NOW()),
-    (10, 1, NOW(), NOW()),
-    (10, 2, NOW(), NOW()),
-    (11, 1, NOW(), NOW()),
-    (11, 2, NOW(), NOW());
+    (1, 2, NOW(), NOW());
 
 -- Questions
 INSERT INTO questions (id, parent_id, question_type_id, created_at, updated_at) VALUES
-    (1, 0, 1, NOW(), NOW()), -- MENU PRINCIPAL
-    (2, 1, 3, NOW(), NOW()), -- option de recherche
-    (3, 1, 3, NOW(), NOW()), -- option de navigation
-    (4, 1, 3, NOW(), NOW()), -- option de retour
-    (20, 2, 1, NOW(), NOW()), -- MENU RECHERCHE
-    (21, 20, 3, NOW(), NOW()), -- recherche par auteur
-    (22, 20, 3, NOW(), NOW()), -- recherche par titre
-    (23, 21, 2, NOW(), NOW()), -- entrée pour recherche par auteur
-    (24, 22, 2, NOW(), NOW()), -- entrée pour recherche par titre
-    (25, 23, 4, NOW(), NOW()), -- point de terminaison pour recherche par auteur
-    (26, 24, 4, NOW(), NOW()), -- point de terminaison pour recherche par titre
-    (30, 3, 1, NOW(), NOW()), -- MENU NAVIGATION
-    (31, 30, 3, NOW(), NOW()), -- navigation par titre
-    (32, 30, 3, NOW(), NOW()), -- navigation par format Daisy2
-    (33, 30, 3, NOW(), NOW()), -- navigation par format Daisy3
-    (34, 31, 4, NOW(), NOW()), -- point de terminaison pour navigation par titre
-    (35, 32, 4, NOW(), NOW()), -- point de terminaison pour navigation par Daisy2
-    (36, 33, 4, NOW(), NOW()), -- point de terminaison pour navigation par Daisy3
-    (40, 4, 1, NOW(), NOW()), -- MENU RETOUR (évaluer)
-    (41, 4, 2, NOW(), NOW()), -- MENU RETOUR (retour personnalisé)
-    (42, 40, 3, NOW(), NOW()), -- option d'évaluation excellent
-    (43, 40, 3, NOW(), NOW()), -- option d'évaluation bon
-    (44, 40, 3, NOW(), NOW()), -- option d'évaluation passable
-    (45, 40, 3, NOW(), NOW()), -- option d'évaluation mauvais
-    (46, 41, 5, NOW(), NOW()), -- point de terminaison pour retour
-    (47, 42, 5, NOW(), NOW()), -- point de terminaison pour retour
-    (48, 43, 5, NOW(), NOW()), -- point de terminaison pour retour
-    (49, 44, 5, NOW(), NOW()), -- point de terminaison pour retour
-    (50, 45, 5, NOW(), NOW()); -- point de terminaison pour retour
-ALTER SEQUENCE questions_id_seq RESTART WITH 51;
+    (1, 0, 1, NOW(), NOW()), -- MAIN MENU
+    (2, 1, 3, NOW(), NOW()), -- search option
+    (3, 1, 3, NOW(), NOW()), -- browse option
+
+    (20, 2, 1, NOW(), NOW()), -- SEARCH MENU
+    (21, 20, 3, NOW(), NOW()), -- search by author
+    (22, 20, 3, NOW(), NOW()), -- search by title
+    (23, 21, 2, NOW(), NOW()), -- input for search by author
+    (24, 22, 2, NOW(), NOW()), -- input for search by title
+    (25, 23, 4, NOW(), NOW()), -- endpoint for search by author
+    (26, 24, 4, NOW(), NOW()), -- endpoint for search by title
+
+    (30, 3, 1, NOW(), NOW()), -- BROWSE MENU
+    (31, 30, 3, NOW(), NOW()), -- browse by title
+	(33, 31, 4, NOW(), NOW()); -- endpoint for browse by title
+
+
+
+ALTER SEQUENCE questions_id_seq RESTART WITH 60;
 
 -- QuestionInputs
 INSERT INTO question_inputs (question_id, created_at, updated_at) VALUES
     (1, NOW(), NOW()),
     (20, NOW(), NOW()),
-    (30, NOW(), NOW()),
-    (40, NOW(), NOW());
+    (30, NOW(), NOW());
+
 INSERT INTO question_inputs (question_id, text_alphanumeric, created_at, updated_at) VALUES
     (23, 1, NOW(), NOW()),
-    (24, 1, NOW(), NOW()),
-    (41, 1, NOW(), NOW());
+    (24, 1, NOW(), NOW());
 
 -- QuestionTexts
 INSERT INTO question_texts (language_id, text, created_at, updated_at) VALUES 
-    (1, 'Que souhaitez-vous faire?', NOW(), NOW()),
-    (2, 'Que souhaitez-vous faire?', NOW(), NOW()),
-    (1, 'Rechercher dans la bibliothèque.', NOW(), NOW()),
-    (2, 'Rechercher dans la bibliothèque.', NOW(), NOW()),
-    (1, 'Parcourir la bibliothèque.', NOW(), NOW()),
-    (2, 'Parcourir la bibliothèque.', NOW(), NOW()),
-    (1, 'Donner votre avis.', NOW(), NOW()),
-    (2, 'Donner votre avis.', NOW(), NOW()),
-    (1, 'Que voulez-vous rechercher?', NOW(), NOW()),
-    (2, 'Que voulez-vous rechercher?', NOW(), NOW()),
-    (1, 'Rechercher par auteur.', NOW(), NOW()),
-    (2, 'Rechercher par auteur.', NOW(), NOW()),
-    (1, 'Rechercher par titre.', NOW(), NOW()),
-    (2, 'Rechercher par titre.', NOW(), NOW()),
-    (1, 'Mots-clés auteur :', NOW(), NOW()),
-    (2, 'Mots-clés auteur :', NOW(), NOW()),
-    (1, 'Mots-clés titre :', NOW(), NOW()),
-    (2, 'Mots-clés titre :', NOW(), NOW()),
-    (1, 'Comment souhaitez-vous parcourir la bibliothèque?', NOW(), NOW()),
-    (2, 'Comment souhaitez-vous parcourir la bibliothèque?', NOW(), NOW()),
-    (1, 'Parcourir par titre.', NOW(), NOW()),
-    (2, 'Parcourir par titre.', NOW(), NOW()),
-    (1, 'Parcourir par format Daisy 2.', NOW(), NOW()),
-    (2, 'Parcourir par format Daisy 2.', NOW(), NOW()),
-    (1, 'Parcourir par format Daisy 3.', NOW(), NOW()),
-    (2, 'Parcourir par format Daisy 3.', NOW(), NOW()),
-    (1, 'Comment évalueriez-vous ce service?', NOW(), NOW()),
-    (2, 'Comment évalueriez-vous ce service?', NOW(), NOW()),
-    (1, 'Retour facultatif ?', NOW(), NOW()),
-    (2, 'Retour facultatif ?', NOW(), NOW()),
-    (1, 'Excellent.', NOW(), NOW()),
-    (2, 'Excellent.', NOW(), NOW()),
-    (1, 'Bon.', NOW(), NOW()),
-    (2, 'Bon.', NOW(), NOW()),
-    (1, 'Passable.', NOW(), NOW()),
-    (2, 'Passable.', NOW(), NOW()),
-    (1, 'Mauvais.', NOW(), NOW()),
-    (2, 'Mauvais.', NOW(), NOW()),
-    (1, 'Merci pour votre retour.', NOW(), NOW()),
-    (2, 'Merci pour votre retour.', NOW(), NOW());
-
+    (1, 'Que souhaitez-vous faire?', NOW(), NOW()), -- 1
+    (2, 'Que souhaitez-vous faire?', NOW(), NOW()), -- 2
+    (1, 'Rechercher dans la bibliothèque.', NOW(), NOW()),-- 3
+    (2, 'Rechercher dans la bibliothèque.', NOW(), NOW()), -- 4
+    (1, 'Parcourir la bibliothèque.', NOW(), NOW()), -- 5
+    (2, 'Parcourir la bibliothèque.', NOW(), NOW()), -- 6
+    (1, 'Donner votre avis.', NOW(), NOW()), -- 7
+    (2, 'Donner votre avis.', NOW(), NOW()), -- 8
+    (1, 'Que voulez-vous rechercher?', NOW(), NOW()), -- 9
+    (2, 'Que voulez-vous rechercher?', NOW(), NOW()), -- 10
+    (1, 'Rechercher par auteur.', NOW(), NOW()), -- 11
+    (2, 'Rechercher par auteur.', NOW(), NOW()), -- 12
+    (1, 'Rechercher par titre.', NOW(), NOW()), -- 13
+    (2, 'Rechercher par titre.', NOW(), NOW()), -- 14
+    (1, 'Mots-clés auteur :', NOW(), NOW()), -- 15
+    (2, 'Mots-clés auteur :', NOW(), NOW()), -- 16
+    (1, 'Mots-clés titre :', NOW(), NOW()), -- 17
+    (2, 'Mots-clés titre :', NOW(), NOW()), -- 18
+    (1, 'Comment souhaitez-vous parcourir la bibliothèque?', NOW(), NOW()), -- 19
+    (2, 'Comment souhaitez-vous parcourir la bibliothèque?', NOW(), NOW()), -- 20
+    (1, 'Parcourir par titre.', NOW(), NOW()), -- 21
+    (2, 'Parcourir par titre.', NOW(), NOW()), -- 22
+    (1, 'Parcourir par format Daisy 2.', NOW(), NOW()), -- 23
+    (2, 'Parcourir par format Daisy 2.', NOW(), NOW()), -- 24
+    (1, 'Parcourir par format Daisy 3.', NOW(), NOW()), -- 25
+    (2, 'Parcourir par format Daisy 3.', NOW(), NOW()), -- 26
+    (1, 'Comment évalueriez-vous ce service?', NOW(), NOW()), -- 27
+    (2, 'Comment évalueriez-vous ce service?', NOW(), NOW()), -- 28
+    (1, 'Retour facultatif ?', NOW(), NOW()), -- 29
+    (2, 'Retour facultatif ?', NOW(), NOW()), -- 30
+    (1, 'Excellent.', NOW(), NOW()), -- 31
+    (2, 'Excellent.', NOW(), NOW()), -- 32
+    (1, 'Bon.', NOW(), NOW()), -- 33
+    (2, 'Bon.', NOW(), NOW()), -- 34
+    (1, 'Passable.', NOW(), NOW()), -- 35
+    (2, 'Passable.', NOW(), NOW()), -- 36
+    (1, 'Mauvais.', NOW(), NOW()), -- 37
+    (2, 'Mauvais.', NOW(), NOW()), -- 38
+    (1, 'Merci pour votre retour.', NOW(), NOW()), -- 39
+    (2, 'Merci pour votre retour.', NOW(), NOW()); -- 40
+	
 -- QuestionAudios
 INSERT INTO question_audios (question_text_id, size, length, mime_type, audio, created_at, updated_at) VALUES
     (1, 13817, 1303, 'audio/ogg', 'question_1.ogg', NOW(), NOW()),
@@ -179,53 +144,25 @@ INSERT INTO question_audios (question_text_id, size, length, mime_type, audio, c
 
 -- QuestionQuestionTexts
 INSERT INTO question_question_texts (question_id, question_text_id, created_at, updated_at) VALUES
-    (1, 1, NOW(), NOW()),
-    (1, 2, NOW(), NOW()),
-    (2, 3, NOW(), NOW()),
-    (2, 4, NOW(), NOW()),
-    (3, 5, NOW(), NOW()),
-    (3, 6, NOW(), NOW()),
-    (4, 7, NOW(), NOW()),
-    (4, 8, NOW(), NOW()),
-    (20, 9, NOW(), NOW()),
-    (20, 10, NOW(), NOW()),
-    (21, 11, NOW(), NOW()),
-    (21, 12, NOW(), NOW()),
-    (22, 13, NOW(), NOW()),
-    (22, 14, NOW(), NOW()),
-    (23, 15, NOW(), NOW()),
-    (23, 16, NOW(), NOW()),
-    (24, 17, NOW(), NOW()),
-    (24, 18, NOW(), NOW()),
-    (30, 19, NOW(), NOW()),
-    (30, 20, NOW(), NOW()),
-    (31, 21, NOW(), NOW()),
-    (31, 22, NOW(), NOW()),
-    (32, 23, NOW(), NOW()),
-    (32, 24, NOW(), NOW()),
-    (33, 25, NOW(), NOW()),
-    (33, 26, NOW(), NOW()),
-    (40, 27, NOW(), NOW()),
-    (40, 28, NOW(), NOW()),
-    (41, 29, NOW(), NOW()),
-    (41, 30, NOW(), NOW()),
-    (42, 31, NOW(), NOW()),
-    (42, 32, NOW(), NOW()),
-    (43, 33, NOW(), NOW()),
-    (43, 34, NOW(), NOW()),
-    (44, 35, NOW(), NOW()),
-    (44, 26, NOW(), NOW()),
-    (45, 37, NOW(), NOW()),
-    (45, 38, NOW(), NOW()),
-    (46, 39, NOW(), NOW()),
-    (46, 40, NOW(), NOW()),
-    (47, 39, NOW(), NOW()),
-    (47, 40, NOW(), NOW()),
-    (48, 39, NOW(), NOW()),
-    (48, 40, NOW(), NOW()),
-    (49, 39, NOW(), NOW()),
-    (49, 40, NOW(), NOW()),
-    (50, 39, NOW(), NOW()),
-    (50, 40, NOW(), NOW());
+    (1, 1, NOW(), NOW()), --Cerca nellalibreria Unitas
+    (1, 2, NOW(), NOW()),--Cerca nellalibreria Unitas
+    (2, 3, NOW(), NOW()),--cerca per...
+    (2, 4, NOW(), NOW()),---cerca per..
+    (3, 5, NOW(), NOW()),--Sfoglia la libreria
+    (3, 6, NOW(), NOW()),--sfoglia la libreria
+    (20, 9, NOW(), NOW()), --Per cosa vuoi cercare?
+    (20, 10, NOW(), NOW()), --Per cosa vuoi cercare?
+    (21, 11, NOW(), NOW()),--cerca per autore
+    (21, 12, NOW(), NOW()),--cerca per autore
+    (22, 13, NOW(), NOW()),--cerca per titolo
+    (22, 14, NOW(), NOW()),--cerca per titolo
+    (23, 15, NOW(), NOW()),--autore
+    (23, 16, NOW(), NOW()),--autore
+    (24, 17, NOW(), NOW()),--titolo
+    (24, 18, NOW(), NOW()), --titolo
+    (30, 19, NOW(), NOW()), --come vuoi sofliare la libreria?
+    (30, 20, NOW(), NOW()),--come vuoi sofliare la libreria?
+    (31, 21, NOW(), NOW()), --sfoglia per titolo
+    (31, 22, NOW(), NOW()); --sfoglia per titolo
 
 COMMIT;
