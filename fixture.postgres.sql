@@ -28,7 +28,7 @@ INSERT INTO user_announcements (user_id, announcement_id, created_at, updated_at
 INSERT INTO questions (id, parent_id, question_type_id, created_at, updated_at) VALUES
     (1, 0, 1, NOW(), NOW()), -- MAIN MENU
     -- (2, 1, 3, NOW(), NOW()), -- search option
-    -- (3, 1, 3, NOW(), NOW()), -- browse option
+    (3, 1, 3, NOW(), NOW()), -- browse option
 
     -- (20, 2, 1, NOW(), NOW()), -- SEARCH MENU
     -- (21, 20, 3, NOW(), NOW()), -- search by author
@@ -38,9 +38,9 @@ INSERT INTO questions (id, parent_id, question_type_id, created_at, updated_at) 
     -- (25, 23, 4, NOW(), NOW()), -- endpoint for search by author
     -- (26, 24, 4, NOW(), NOW()), -- endpoint for search by title
 
-    -- (30, 3, 1, NOW(), NOW()), -- BROWSE MENU
+    (30, 2, 1, NOW(), NOW()), -- BROWSE MENU
     -- (31, 30, 3, NOW(), NOW()), -- browse by title
-	(33, 1, 4, NOW(), NOW()); -- endpoint for browse by title
+	(33, 20, 4, NOW(), NOW()); -- endpoint for browse by title
 
 
 
@@ -48,9 +48,9 @@ ALTER SEQUENCE questions_id_seq RESTART WITH 60;
 
 -- QuestionInputs
 INSERT INTO question_inputs (question_id, created_at, updated_at) VALUES
-    (1, NOW(), NOW());
+    (1, NOW(), NOW()),
 --     (20, NOW(), NOW()),
---     (30, NOW(), NOW());
+    (30, NOW(), NOW());
 
 -- INSERT INTO question_inputs (question_id, text_alphanumeric, created_at, updated_at) VALUES
 --     (23, 1, NOW(), NOW()),
@@ -145,11 +145,11 @@ INSERT INTO question_audios (question_text_id, size, length, mime_type, audio, c
 -- QuestionQuestionTexts
 INSERT INTO question_question_texts (question_id, question_text_id, created_at, updated_at) VALUES
     (1, 1, NOW(), NOW()), --Cerca nellalibreria Unitas
-    (1, 2, NOW(), NOW());--Cerca nellalibreria Unitas
+    (1, 2, NOW(), NOW()),--Cerca nellalibreria Unitas
     -- (2, 3, NOW(), NOW()),--cerca per...
     -- (2, 4, NOW(), NOW()),---cerca per..
-    -- (3, 5, NOW(), NOW()),--Sfoglia la libreria
-    -- (3, 6, NOW(), NOW()),--sfoglia la libreria
+    (3, 5, NOW(), NOW()),--Sfoglia la libreria
+    (3, 6, NOW(), NOW());--sfoglia la libreria
     -- (20, 9, NOW(), NOW()), --Per cosa vuoi cercare?
     -- (20, 10, NOW(), NOW()), --Per cosa vuoi cercare?
     -- (21, 11, NOW(), NOW()),--cerca per autore
@@ -163,6 +163,6 @@ INSERT INTO question_question_texts (question_id, question_text_id, created_at, 
     -- (30, 19, NOW(), NOW()), --come vuoi sofliare la libreria?
     -- (30, 20, NOW(), NOW()),--come vuoi sofliare la libreria?
     -- (31, 21, NOW(), NOW()), --sfoglia per titolo
-    -- (31, 22, NOW(), NOW()); --sfoglia per titolo
+    -- (31, 22, NOW(), NOW()); --sfoglia per titolo;
 
 COMMIT;
