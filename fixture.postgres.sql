@@ -48,7 +48,7 @@ ALTER SEQUENCE questions_id_seq RESTART WITH 60;
 
 -- QuestionInputs
 INSERT INTO question_inputs (question_id, created_at, updated_at) VALUES
-    (1, NOW(), NOW()):
+    (1, NOW(), NOW());
 --     (20, NOW(), NOW()),
 --     (30, NOW(), NOW());
 
