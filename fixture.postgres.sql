@@ -38,19 +38,16 @@ INSERT INTO questions (id, parent_id, question_type_id, created_at, updated_at) 
     (25, 23, 4, NOW(), NOW()), -- endpoint for search by author
     (26, 24, 4, NOW(), NOW()), -- endpoint for search by title
 
-    (30, 3, 1, NOW(), NOW()), -- BROWSE MENU
-    (31, 30, 3, NOW(), NOW()), -- browse by title
-	(33, 31, 4, NOW(), NOW()); -- endpoint for browse by title
-
-
+    -- Simplified: question 30 is now directly an endpoint (type_id=4).
+    (30, 3, 4, NOW(), NOW());  -- BROWSE ENDPOINT (no extra choice)
 
 ALTER SEQUENCE questions_id_seq RESTART WITH 60;
 
 -- QuestionInputs
 INSERT INTO question_inputs (question_id, created_at, updated_at) VALUES
     (1, NOW(), NOW()),
-    (20, NOW(), NOW()),
-    (30, NOW(), NOW());
+    (20, NOW(), NOW());
+    --(30, NOW(), NOW());  -- We can still keep an input for 30 if needed
 
 INSERT INTO question_inputs (question_id, text_alphanumeric, created_at, updated_at) VALUES
     (23, 1, NOW(), NOW()),
@@ -60,7 +57,7 @@ INSERT INTO question_inputs (question_id, text_alphanumeric, created_at, updated
 INSERT INTO question_texts (language_id, text, created_at, updated_at) VALUES 
     (1, 'Que souhaitez-vous faire?', NOW(), NOW()), -- 1
     (2, 'Que souhaitez-vous faire?', NOW(), NOW()), -- 2
-    (1, 'Rechercher dans la bibliothèque.', NOW(), NOW()),-- 3
+    (1, 'Rechercher dans la bibliothèque.', NOW(), NOW()), -- 3
     (2, 'Rechercher dans la bibliothèque.', NOW(), NOW()), -- 4
     (1, 'Parcourir la bibliothèque.', NOW(), NOW()), -- 5
     (2, 'Parcourir la bibliothèque.', NOW(), NOW()), -- 6
@@ -98,7 +95,7 @@ INSERT INTO question_texts (language_id, text, created_at, updated_at) VALUES
     (2, 'Mauvais.', NOW(), NOW()), -- 38
     (1, 'Merci pour votre retour.', NOW(), NOW()), -- 39
     (2, 'Merci pour votre retour.', NOW(), NOW()); -- 40
-	
+
 -- QuestionAudios
 INSERT INTO question_audios (question_text_id, size, length, mime_type, audio, created_at, updated_at) VALUES
     (1, 13817, 1303, 'audio/ogg', 'question_1.ogg', NOW(), NOW()),
@@ -144,25 +141,40 @@ INSERT INTO question_audios (question_text_id, size, length, mime_type, audio, c
 
 -- QuestionQuestionTexts
 INSERT INTO question_question_texts (question_id, question_text_id, created_at, updated_at) VALUES
-    (1, 1, NOW(), NOW()), --Cerca nellalibreria Unitas
-    (1, 2, NOW(), NOW()),--Cerca nellalibreria Unitas
-    (2, 3, NOW(), NOW()),--cerca per...
-    (2, 4, NOW(), NOW()),---cerca per..
-    (3, 5, NOW(), NOW()),--Sfoglia la libreria
-    (3, 6, NOW(), NOW()),--sfoglia la libreria
-    (20, 9, NOW(), NOW()), --Per cosa vuoi cercare?
-    (20, 10, NOW(), NOW()), --Per cosa vuoi cercare?
-    (21, 11, NOW(), NOW()),--cerca per autore
-    (21, 12, NOW(), NOW()),--cerca per autore
-    (22, 13, NOW(), NOW()),--cerca per titolo
-    (22, 14, NOW(), NOW()),--cerca per titolo
-    (23, 15, NOW(), NOW()),--autore
-    (23, 16, NOW(), NOW()),--autore
-    (24, 17, NOW(), NOW()),--titolo
-    (24, 18, NOW(), NOW()), --titolo
-    (30, 19, NOW(), NOW()), --come vuoi sofliare la libreria?
-    (30, 20, NOW(), NOW()),--come vuoi sofliare la libreria?
-    (31, 21, NOW(), NOW()), --sfoglia per titolo
-    (31, 22, NOW(), NOW()); --sfoglia per titolo
+    -- MAIN MENU (question 1)
+    (1, 1, NOW(), NOW()),
+    (1, 2, NOW(), NOW()),
+
+    -- Search option (question 2)
+    (2, 3, NOW(), NOW()),
+    (2, 4, NOW(), NOW()),
+
+    -- Browse option (question 3)
+    (3, 5, NOW(), NOW()),
+    (3, 6, NOW(), NOW()),
+
+    -- SEARCH MENU (question 20)
+    (20, 9, NOW(), NOW()),
+    (20, 10, NOW(), NOW()),
+
+    -- Search by author (question 21)
+    (21, 11, NOW(), NOW()),
+    (21, 12, NOW(), NOW()),
+
+    -- Search by title (question 22)
+    (22, 13, NOW(), NOW()),
+    (22, 14, NOW(), NOW()),
+
+    -- Input for search by author (question 23)
+    (23, 15, NOW(), NOW()),
+    (23, 16, NOW(), NOW()),
+
+    -- Input for search by title (question 24)
+    (24, 17, NOW(), NOW()),
+    (24, 18, NOW(), NOW()),
+
+    -- BROWSE ENDPOINT (question 30) - we can optionally keep the prompt if you want to play a message before going to the "browse" logic
+    (30, 19, NOW(), NOW()),
+    (30, 20, NOW(), NOW());
 
 COMMIT;
